@@ -1,0 +1,66 @@
+/* ── Follow-up tabs ── */
+.fu-tabs {
+  display: flex;
+  gap: 4px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 4px;
+  flex-wrap: wrap;
+}
+
+.fu-tab {
+  padding: 7px 16px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.fu-tab.active {
+  background: #fff;
+  color: #0d9488;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.fu-tab:hover:not(.active) {
+  color: #374151;
+  background: rgba(255,255,255,0.6);
+}
+
+/* ── WhatsApp action button ── */
+.icon-action.whatsapp {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.icon-action.whatsapp:hover {
+  background: #bbf7d0;
+}
+
+/* ── Auto-generated badge ── */
+.fu-auto-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #0d9488;
+  background: #ccfbf1;
+  padding: 1px 7px;
+  border-radius: 20px;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+
+/* ── fu-right flex ── */
+.fu-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}

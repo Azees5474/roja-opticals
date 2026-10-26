@@ -1,0 +1,48 @@
+.cursor-trail-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cursor-trail-circle {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(2px);
+  animation: trailPulse 2s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+@keyframes trailPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.cursor-trail-circle:nth-child(3n + 1) {
+  animation-delay: 0s;
+}
+
+.cursor-trail-circle:nth-child(3n + 2) {
+  animation-delay: 0.3s;
+}
+
+.cursor-trail-circle:nth-child(3n + 3) {
+  animation-delay: 0.6s;
+}
+
+/* Hide on mobile/touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-trail-container {
+    display: none;
+  }
+}

@@ -1,0 +1,188 @@
+.loading-spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.spinner-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spinner Rings */
+.spinner-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  animation: spinRing 2s ease-in-out infinite;
+}
+
+.loading-spinner-container.small .spinner-ring {
+  border-width: 2px;
+}
+
+.loading-spinner-container.large .spinner-ring {
+  border-width: 4px;
+}
+
+/* Small Size */
+.loading-spinner-container.small .ring-1 {
+  width: 32px;
+  height: 32px;
+  border-top-color: #667eea;
+  animation-duration: 1.5s;
+}
+
+.loading-spinner-container.small .ring-2 {
+  width: 40px;
+  height: 40px;
+  border-right-color: #764ba2;
+  animation-duration: 2s;
+  animation-direction: reverse;
+}
+
+.loading-spinner-container.small .ring-3 {
+  width: 48px;
+  height: 48px;
+  border-bottom-color: #f093fb;
+  animation-duration: 2.5s;
+}
+
+.loading-spinner-container.small .spinner-core {
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+}
+
+/* Medium Size (default) */
+.loading-spinner-container.medium .ring-1 {
+  width: 48px;
+  height: 48px;
+  border-top-color: #667eea;
+  animation-duration: 1.5s;
+}
+
+.loading-spinner-container.medium .ring-2 {
+  width: 60px;
+  height: 60px;
+  border-right-color: #764ba2;
+  animation-duration: 2s;
+  animation-direction: reverse;
+}
+
+.loading-spinner-container.medium .ring-3 {
+  width: 72px;
+  height: 72px;
+  border-bottom-color: #f093fb;
+  animation-duration: 2.5s;
+}
+
+.loading-spinner-container.medium .spinner-core {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+}
+
+/* Large Size */
+.loading-spinner-container.large .ring-1 {
+  width: 64px;
+  height: 64px;
+  border-top-color: #667eea;
+  animation-duration: 1.5s;
+}
+
+.loading-spinner-container.large .ring-2 {
+  width: 80px;
+  height: 80px;
+  border-right-color: #764ba2;
+  animation-duration: 2s;
+  animation-direction: reverse;
+}
+
+.loading-spinner-container.large .ring-3 {
+  width: 96px;
+  height: 96px;
+  border-bottom-color: #f093fb;
+  animation-duration: 2.5s;
+}
+
+.loading-spinner-container.large .spinner-core {
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+}
+
+/* Spinner Core */
+.spinner-core {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+  animation: coreGlow 2s ease-in-out infinite;
+}
+
+.spinner-core svg {
+  animation: starRotate 3s linear infinite;
+}
+
+/* Animations */
+@keyframes spinRing {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes coreGlow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(118, 75, 162, 0.8);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes starRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Spinner Text */
+.spinner-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}

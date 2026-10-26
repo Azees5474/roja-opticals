@@ -1,0 +1,49 @@
+.scroll-indicator {
+  position: fixed;
+  top: 68px;
+  left: 240px;
+  right: 0;
+  height: 3px;
+  background: rgba(241, 245, 249, 0.5);
+  z-index: 999;
+  overflow: hidden;
+}
+
+.scroll-indicator-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 100%;
+  transition: width 0.1s ease-out;
+  animation: gradientFlow 3s ease infinite;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+  position: relative;
+}
+
+.scroll-indicator-bar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5));
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes shimmer {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 900px) {
+  .scroll-indicator {
+    left: 0;
+  }
+}

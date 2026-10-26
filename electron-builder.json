@@ -1,0 +1,73 @@
+{
+  "appId": "com.rojaopticals.app",
+  "productName": "Roja Opticals",
+  "copyright": "Copyright © 2026 Roja Opticals",
+  "npmRebuild": false,
+  "directories": {
+    "app": ".",
+    "output": "dist-electron",
+    "buildResources": "build"
+  },
+  "files": [
+    "package.json",
+    "electron/**/*",
+    "server/**/*",
+    "app/dist/**/*",
+    "assets/**/*",
+    "!server/.env*",
+    "!server/**/.env*",
+    "!server/**/.auth_secret*",
+    "!server/.auth_secret*",
+    "!server/*google_drive_tokens*.json",
+    "!server/*google_drive_config*.json",
+    "!server/local_database*/**",
+    "!server/local_database*",
+    "!server/local_database_backups/**",
+    "!server/local_database_backups*",
+    "!server/local_database_archive_safe/**",
+    "!server/local_database_archive_safe*",
+    "!server/test/**",
+    "!server/test*/**",
+    "!server/test-*.js",
+    "!server/sync-existing-data.js",
+    "!server/temp_appdata_test/**",
+    "!server/drive_test_temp*/**",
+    "!server/export_test_temp*/**",
+    "!**/*.test.js",
+    "!**/*.spec.js",
+    "!server/node_modules/**/.bin/**",
+    "!server/node_modules/**/*.d.ts",
+    "!server/node_modules/**/*.map",
+    "!app/node_modules/**",
+    "!app/src/**",
+    "!dist-electron/**",
+    "!build/**",
+    "!**/*.md",
+    "!**/*.sql"
+  ],
+  "asar": true,
+  "asarUnpack": [
+    "server/**/*",
+    "app/dist/**/*"
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "build/icon.png"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Roja Opticals",
+    "uninstallDisplayName": "Roja Opticals",
+    "deleteAppDataOnUninstall": false,
+    "runAfterFinish": true
+  }
+}

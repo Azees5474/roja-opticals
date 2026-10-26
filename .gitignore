@@ -1,0 +1,65 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+**/node_modules
+
+# Build outputs
+dist
+dist-ssr
+dist-electron
+*.local
+*.exe
+
+# Environment files and credentials
+.env
+.env.local
+.env.*.local
+**/.env
+*google_drive_tokens*.json
+*google_drive_config*.json
+*.enc.json
+
+# Customer and message data must never be committed
+server/local_database*/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary files
+*.tmp
+*.temp
+.cache
+.parcel-cache
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Test files
+test_*.js
+test_*.cjs
+*.test.local
+
+# SQL migration backups (keep main migration file)
+*_backup.sql
+*_old.sql
+
+# Obsolete documentation
+*_OLD.md
+*_BACKUP.md

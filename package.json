@@ -1,0 +1,26 @@
+{
+  "name": "roja-opticals",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Roja Opticals Optical Retail & Clinic Management System",
+  "author": "Roja Opticals",
+  "main": "electron/main.js",
+  "scripts": {
+    "setup": "npm --prefix app install && npm --prefix server install",
+    "build:app": "npm --prefix app run build",
+    "build": "npm run build:app",
+    "lint": "npm --prefix app run lint",
+    "test": "npm --prefix server test",
+    "start": "npm --prefix server start",
+    "dev:server": "npm --prefix server dev",
+    "dev:app": "npm --prefix app run dev",
+    "electron:start": "electron .",
+    "electron:dev": "npm run build:app && electron .",
+    "dist:win": "npm run build:app && electron-builder --win nsis --config electron-builder.json",
+    "package": "npm run dist:win"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0"
+  }
+}

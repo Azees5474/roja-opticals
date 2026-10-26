@@ -1,0 +1,371 @@
+/* ── Wide modal ── */
+.modal-wide {
+  max-width: 580px;
+}
+
+/* ── Customer directory search experience ── */
+.customers-header {
+  animation: pageEnter 420ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.customer-search-panel {
+  display: grid;
+  grid-template-columns: minmax(230px, .9fr) minmax(280px, 1.4fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  color: #ecfeff;
+  background: linear-gradient(125deg, #0f766e 0%, #0d9488 52%, #14b8a6 100%);
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(13, 148, 136, .18);
+  overflow: hidden;
+  position: relative;
+  animation: pageEnter 480ms 50ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.customer-search-panel::after {
+  content: '';
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  right: -55px;
+  top: -105px;
+  border: 32px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.customer-search-copy { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
+.customer-search-copy strong { display: block; font-size: 15px; letter-spacing: -.15px; }
+.customer-search-copy span { display: block; margin-top: 3px; font-size: 12.5px; color: rgba(236,254,255,.78); }
+.customer-search-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: rgba(255,255,255,.16); }
+.customer-search-bar { position: relative; z-index: 1; }
+.customer-search-bar input { border: 1px solid rgba(255,255,255,.56); background: rgba(255,255,255,.97); box-shadow: 0 4px 12px rgba(4, 78, 72, .13); padding-right: 42px; }
+.customer-search-bar input:focus { border-color: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.2); }
+.clear-search { position: absolute; right: 9px; width: 26px; height: 26px; border: 0; display: grid; place-items: center; border-radius: 7px; color: #64748b; background: #e2e8f0; transition: transform .18s ease, background .18s ease; }
+.clear-search:hover { background: #cbd5e1; transform: rotate(90deg); }
+.customer-search-status { position: relative; z-index: 1; display: flex; align-items: center; gap: 6px; justify-self: end; white-space: nowrap; font-size: 12px; font-weight: 600; color: rgba(236,254,255,.9); }
+
+.customer-name-cell { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.customer-id { display: inline-flex; align-items: center; gap: 2px; width: max-content; color: #94a3b8; font-size: 10.5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .35px; }
+.customer-row { animation: rowEnter 360ms cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(min(var(--row-index), 10) * 35ms); }
+.customer-row:hover { transform: translateX(3px); box-shadow: inset 3px 0 #14b8a6; }
+
+@keyframes pageEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes rowEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 850px) {
+  .customer-search-panel { grid-template-columns: 1fr; gap: 14px; }
+  .customer-search-status { justify-self: start; }
+}
+
+@media (max-width: 580px) {
+  .customer-search-panel { padding: 16px; }
+  .customer-search-copy span { display: none; }
+}
+
+/* ── Modal section title ── */
+.modal-section-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid #f1f5f9;
+}
+
+/* ── Prescription toggle ── */
+.rx-toggle-row {
+  margin: 16px 0 14px;
+  padding: 12px 14px;
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 10px;
+}
+
+.rx-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #065f46;
+  cursor: pointer;
+}
+
+.rx-toggle-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #0d9488;
+  cursor: pointer;
+}
+
+/* ── Prescription grid (input table) ── */
+.rx-grid {
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.rx-grid-head {
+  display: grid;
+  grid-template-columns: 130px 1fr 1fr 1fr;
+  padding: 8px 14px;
+  background: #f1f5f9;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  gap: 8px;
+}
+
+.rx-grid-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 1fr 1fr;
+  padding: 10px 14px;
+  gap: 8px;
+  border-top: 1px solid #e5e7eb;
+  align-items: center;
+}
+
+.rx-eye-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.rx-grid-row input {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  text-align: center;
+  transition: border-color 0.15s;
+}
+
+.rx-grid-row input:focus {
+  border-color: #0d9488;
+}
+
+.rx-grid-row input::placeholder {
+  color: #d1d5db;
+}
+
+/* ── View customer card ── */
+.view-customer-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f9fafb;
+  border: 1.5px solid #f1f5f9;
+  border-radius: 12px;
+}
+
+.view-avatar {
+  width: 56px;
+  height: 56px;
+  background: #ccfbf1;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.view-customer-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.view-customer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.view-customer-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ── Prescription empty state ── */
+.rx-empty {
+  padding: 16px;
+  background: #f9fafb;
+  border: 1.5px dashed #e5e7eb;
+  border-radius: 10px;
+  font-size: 13.5px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+/* ── Prescription history cards ── */
+.rx-history {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.rx-card {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.rx-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rx-card-num {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0d9488;
+}
+
+.rx-card-date {
+  font-size: 12.5px;
+  color: #6b7280;
+}
+
+.rx-card-doctor {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-left: auto;
+}
+
+/* ── Prescription view table ── */
+.rx-view-grid {
+  padding: 4px 14px 10px;
+}
+
+.rx-view-head {
+  display: grid;
+  grid-template-columns: 130px 1fr 1fr 1fr;
+  padding: 8px 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.rx-view-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 1fr 1fr;
+  padding: 9px 0;
+  font-size: 13.5px;
+  color: #374151;
+  border-bottom: 1px solid #f9fafb;
+  align-items: center;
+}
+
+.rx-view-row:last-child {
+  border-bottom: none;
+}
+
+.rx-view-row .rx-eye-label {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* ── Modal error ── */
+.modal-error {
+  font-size: 13px;
+  color: #ef4444;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+
+/* ── Profile tabs ── */
+.profile-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid #f1f5f9;
+  margin-bottom: 16px;
+}
+
+.profile-tab {
+  padding: 8px 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.profile-tab.active {
+  color: #0d9488;
+  border-bottom-color: #0d9488;
+}
+
+.profile-tab:hover:not(.active) {
+  color: #374151;
+}
+
+/* ── Clickable customer name ── */
+.clickable-name {
+  cursor: pointer;
+  color: #111827;
+  font-weight: 600;
+}
+
+.clickable-name:hover {
+  color: #0d9488;
+  text-decoration: underline;
+}
+
+/* ── Invoice mini card ── */
+.invoice-mini {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.invoice-mini-left {
+  font-size: 13px;
+  color: #374151;
+}
+
+.invoice-mini-amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}

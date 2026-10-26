@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.example.twilio
+
+# Local Customer Data and Backups (NEVER commit customer records)
+local_database*/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

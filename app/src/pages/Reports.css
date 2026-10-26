@@ -1,0 +1,191 @@
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes slideInCard {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.realtime-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border: 2px solid #6ee7b7;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #065f46;
+  margin-bottom: 20px;
+  animation: slideInCard 0.6s ease-out;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulseGlow 2s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+}
+
+.last-update {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  padding: 6px 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.report-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: 2px solid #f1f5f9;
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  animation: slideInCard 0.6s ease-out;
+  animation-delay: calc(var(--card-index, 0) * 0.1s);
+  animation-fill-mode: both;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.kpi-card:hover::before {
+  opacity: 1;
+}
+
+.kpi-card:nth-child(1) { --card-index: 0; }
+.kpi-card:nth-child(2) { --card-index: 1; }
+.kpi-card:nth-child(3) { --card-index: 2; }
+.kpi-card:nth-child(4) { --card-index: 3; }
+
+.kpi-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 10px;
+}
+
+.kpi-value {
+  font-size: 32px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+.kpi-sub {
+  font-size: 12.5px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.report-grid > :last-child {
+  grid-column: 1 / -1;
+}
+
+.report-chart-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+  border: 2px solid #f1f5f9;
+  border-radius: 16px;
+  padding: 26px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  animation: slideInCard 0.7s ease-out 0.3s both;
+}
+
+.report-chart-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.report-chart-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+  border-color: #e0e7ff;
+}
+
+.report-chart-card:hover::before {
+  opacity: 1;
+}
+
+.report-chart-card h2 {
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .report-kpis { grid-template-columns: repeat(2, 1fr); }
+  .report-grid { grid-template-columns: 1fr; }
+  .report-grid > :last-child { grid-column: auto; }
+}
