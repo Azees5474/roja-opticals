@@ -2,8 +2,6 @@
 
 Roja Opticals is a full-featured optical retail and clinic management system designed for **laptop-local operation** (offline-first) with optional zero-knowledge encrypted cloud backups (Google Drive) and data export (Excel .xlsx).
 
-📘 **For shop owners and staff:** Read the comprehensive [Customer Guide (CUSTOMER_GUIDE.md)](./CUSTOMER_GUIDE.md) for step-by-step instructions on installation, first-run setup, daily operations, invoices, backups, and moving to a new laptop.
-
 ---
 
 ## ⚡ Quick Start on Windows
@@ -78,5 +76,4 @@ To comply with high security and privacy standards, **no default passwords or ha
 - **Atomic Storage Engine**: The local database uses atomic staging writes (`.tmp` + rename) and in-memory promise mutexes to serialize concurrent writes and prevent data corruption.
 - **Path Traversal Protection**: Table names and record IDs are validated with strict regex and whitelists, rejecting any directory traversal attempts (`../`).
 - **Resilient Fallback**: Corrupted files or temporary files in the data directory are safely skipped without breaking API endpoints.
-
-For full details on data privacy, BitLocker protection on shared laptops, and disaster recovery, see [CUSTOMER_GUIDE.md](./CUSTOMER_GUIDE.md) and [LOCAL_DATA_AND_PRIVACY.md](./LOCAL_DATA_AND_PRIVACY.md).
+- **Disaster Recovery**: Automatic pre-restore backups and zero-knowledge Google Drive encrypted cloud archives ensure complete data survivability.

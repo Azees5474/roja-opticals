@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS whatsapp_messages (
   -- Constraints
   CONSTRAINT whatsapp_messages_type_check CHECK (
     message_type IN (
-      '30day', '180day', 'glasses_ready',
+      'welcome', '30day', '180day', 'glasses_ready',
       'payment_reminder', 'next_visit', 'custom'
     )
   ),
@@ -194,6 +194,7 @@ CREATE INDEX IF NOT EXISTS idx_wa_messages_sent_at
 CREATE TABLE IF NOT EXISTS whatsapp_settings (
   id                    uuid    PRIMARY KEY DEFAULT gen_random_uuid(),
   enabled               boolean NOT NULL DEFAULT true,
+  welcome_message       boolean NOT NULL DEFAULT true,
   review_30day          boolean NOT NULL DEFAULT true,
   checkup_180day        boolean NOT NULL DEFAULT true,
   next_visit_reminder   boolean NOT NULL DEFAULT true,
@@ -203,14 +204,18 @@ CREATE TABLE IF NOT EXISTS whatsapp_settings (
   updated_at            timestamptz DEFAULT now()
 );
 
+-- Ensure welcome_message column exists if table was previously created
+ALTER TABLE whatsapp_settings
+  ADD COLUMN IF NOT EXISTS welcome_message boolean NOT NULL DEFAULT true;
+
 -- Insert the single default settings row (idempotent)
 INSERT INTO whatsapp_settings (
-  id, enabled, review_30day, checkup_180day,
+  id, enabled, welcome_message, review_30day, checkup_180day,
   next_visit_reminder, glasses_ready, payment_reminder
 )
 VALUES (
   '00000000-0000-0000-0000-000000000001',
-  true, true, true, true, true, true
+  true, true, true, true, true, true, true
 )
 ON CONFLICT (id) DO NOTHING;
 
