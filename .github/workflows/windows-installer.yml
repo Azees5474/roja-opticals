@@ -1,0 +1,70 @@
+name: Windows installer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/windows-installer.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-installer-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            app/package-lock.json
+            server/package-lock.json
+      - name: Install dependencies
+        run: |
+          npm ci
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm ci --prefix app
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm ci --prefix server
+      - name: Test
+        run: npm test
+      - name: Package Windows installer
+        run: npm run package -- --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: dist-electron/*Setup*.exe
+          if-no-files-found: error
+
+  release:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: windows-installer
+          path: installer
+      - name: Publish first Windows release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if gh release view v1.0.0 >/dev/null 2>&1; then
+            exit 0
+          fi
+          gh release create v1.0.0 installer/*.exe \
+            --target "$GITHUB_SHA" \
+            --title "Roja Opticals 1.0.0" \
+            --notes "Windows x64 setup installer for the offline-first Roja Opticals desktop app."

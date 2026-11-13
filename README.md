@@ -9,7 +9,7 @@ Roja Opticals is a full-featured optical retail and clinic management system des
 ### Option 1: Standalone Desktop App (Recommended for Shop Owners)
 No Node.js, terminal, or developer tools required!
 
-1. **Install**: Double-click [`dist-electron/Roja Opticals Setup 1.0.0.exe`](./dist-electron/Roja%20Opticals%20Setup%201.0.0.exe) to install Roja Opticals on any 64-bit Windows laptop.
+1. Open [GitHub Releases](https://github.com/Azees5474/roja-opticals/releases) and download the Windows x64 setup `.exe` from **Assets** when available. Run the installer. If there is no installer asset, use the launcher or build from source below.
 2. **Launch**: Launch via the **Desktop shortcut** or Windows **Start Menu** (`Roja Opticals`).
 3. **Data Safety**: Customer records, orders, prescriptions, and backups are stored in your secure Windows profile at `%APPDATA%\RojaOpticals\data`. App updates and reinstallation preserve your data automatically.
 
@@ -22,22 +22,17 @@ No Node.js, terminal, or developer tools required!
    - Starts backend bound to `127.0.0.1:5000` and opens browser.
 
 ### Option 3: Command Line Setup & Build
+Use Node.js 24 on 64-bit Windows. Run these commands from the repository root.
+
 ```powershell
-# 1. Install dependencies
-npm run setup
-
-# 2. Build frontend production bundle
-npm run build
-
-# 3. Build standalone Windows Desktop Installer (.exe)
-npm run package
-
-# 4. Run automated test suite (67 security, auth, backup, drive, and export tests)
+npm ci
+npm ci --prefix app
+npm ci --prefix server
 npm test
-
-# 5. Run frontend linter
-npm run lint
+npm run package -- --publish never
 ```
+
+The installer is written to `dist-electron/`. To try the app from source, launch it with `npm run electron:dev` after installing dependencies, then create a test shop in the first-run wizard.
 
 ---
 
